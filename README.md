@@ -1,36 +1,94 @@
-# CND - Shadowpixel
+# CND - Data Layer Monitor
 
-A Google Tag Manager custom tag template that sends a tracking pixel to a Cloud Nine Digital collection endpoint, enriched with dataLayer, device, browser, and live-session context.
+This document explains how to implement the CND Data Layer Monitor. Follow the steps carefully to ensure correct setup and functioning.
 
-## What it does
+---
 
-On firing, the tag:
+## 1. Choose Your Implementation Type
 
-1. Reads the current `dataLayer` and matches the entry associated with the active `gtm.uniqueEventId`.
-2. Builds a payload containing the event name, domain, current URL, device type, browser, page section (DLM page-type variable), and a JSON-serialized copy of the matched dataLayer entry.
-3. Detects "live session" mode via the `dlm_live_session` / `dlm_live_session_id` query parameters or an existing `dlm_live_session_id` cookie, and appends session identifiers to the payload when active.
-4. Sends the payload as a pixel (`sendPixel`) to:
-   `{endPoint}/{domain}/datalayers-img/` (or `/datalayers-img-live/` during a live session).
+You now have two options depending on your situation:
 
-## Template fields
+### Option 1: New Implementation (Full Setup)
+Use this option if you are setting up the Data Layer Monitor from scratch.
 
-| Field | Description |
-|---|---|
-| **Endpoint URL** | The Cloud Nine Digital collection endpoint. Provided by your CND consultant or found in your DLM setup documentation. |
-| **Page Type (DLM variable)** | The dynamic DLM page-type variable value for the current page (e.g. `homepage`, `checkout`, `article`). |
-| **Domain / Client ID** | The predefined client abbreviation for this domain (e.g. `CND` for `www.cloudninedigital.nl`). Provided by your CND consultant or found in your DLM setup documentation. |
-| **userAgent** | Reference to a Custom JavaScript variable that returns `navigator.userAgent`. |
+- Download the file: **CND - Data Layer Monitor Full Implementation**
+- This file contains all required tags, triggers, and variables
 
-## Setup
+---
 
-1. Import this template into your GTM workspace (via the Community Template Gallery, or manually from `template.tpl`).
-2. Create a Custom JavaScript variable that returns `navigator.userAgent` and reference it in the **userAgent** field.
-3. Create a tag using this template, fill in the Endpoint URL, Domain/Client ID (as provided by your CND consultant), and Page Type.
-4. Attach a trigger (e.g. a custom event trigger matching your relevant events) and publish.
+### Option 2: Update Existing Implementation (Template Only)
+Use this option if you already have the Data Layer Monitor implemented and only want to update to the latest version.
+
+- Download the file: **CND - Data Layer Monitor Template Only**
+- This will update only the necessary components without affecting your full setup
+
+---
+
+## 2. Import the Workspace in Google Tag Manager
+
+Once you have downloaded the correct file:
+
+1. Open your GTM account and navigate to the correct container  
+2. Click on **Admin**  
+3. Under the **Container** section, select **Import Container**  
+4. Upload the `.json` file  
+
+### Recommended Settings
+
+When importing, use the following settings:
+
+- **Workspace**: Select **New**
+- **Import option**: Select **Merge**
+- **Conflict resolution**: Select **Overwrite conflicting tags, triggers and variables**
+
+---
+
+## 3. Configure the Correct `page_type`
+
+The monitor uses the `page_type` data layer value to categorize events.
+
+After importing:
+
+- Locate variables or triggers that reference `page_type`  
+- Ensure it is correctly set for each page  
+
+### Example values:
+- `home`  
+- `product`  
+- `checkout`  
+- `confirmation`  
+
+### If `page_type` is not available
+
+If your data layer does **not** include a `page_type` parameter:
+
+- You can leave this field **blank**  
+- The Data Layer Monitor will still function correctly  
+- Events will simply not be segmented by page type  
+
+> 💡 Tip: Adding a `page_type` parameter is recommended for better insights and segmentation, but it is not required for the monitor to work.
+
+---
+
+## 4. Add the Client ID
+
+Each implementation uses a client-specific ID.
+
+- Insert the provided Client ID (e.g. **CND**, **eftweb** or **NYP**) into the tag configuration  
+- If you don’t have it yet, request it from your Cloud Nine Digital contact  
+
+This ensures consistency in tracking and reporting.
+
+---
+
+By following these steps, you will have a fully functioning **CND Data Layer Monitor** implementation that helps maintain data quality, detect issues early, and provide better visibility into your website's data layer interactions.
+
+If you encounter any issues during setup, please refer to the troubleshooting section (if available) or contact the CND support team.
+
 
 ## Version
 
-Current version: **1.0** — see the changelog header inside `template.tpl`'s Sandboxed JavaScript for details.
+Current version: **1.0** — see the changelog header inside `template.tpl`'s  for details.
 
 ## Support
 
