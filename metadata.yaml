@@ -1,0 +1,9 @@
+homepage: "https://www.cloudninedigital.nl"
+documentation: "https://cloudninedigital.github.io/dlm-docs/docs/intro"
+versions:
+  - sha: REPLACE_WITH_COMMIT_SHA
+    changeNotes: |2
+      1.0 - Initial release.
+      Sends the CND Shadowpixel with dataLayer context (event, domain,
+      device, browser, section, live-session data) to the configured
+      Cloud Nine Digital collection endpoint.
