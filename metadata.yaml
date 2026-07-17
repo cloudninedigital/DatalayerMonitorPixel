@@ -1,7 +1,7 @@
 homepage: "https://www.cloudninedigital.nl"
 documentation: "https://cloudninedigital.github.io/dlm-docs/docs/intro"
 versions:
-  - sha: 530c49d4e9080f8fa018ca334a9c74c253607352
+  - sha: 5f2a1e8c0d35a9c7038ee8b0cebcaee5f2a89a00
     changeNotes: |2
       1.0 - Initial release.
       Sends the CND Shadowpixel with dataLayer context (event, domain,
