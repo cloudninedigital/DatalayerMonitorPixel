@@ -11,7 +11,7 @@ ___INFO___
   "id": "cvt_temp_public_id",
   "version": 1,
   "securityGroups": [],
-  "displayName": "CND - Shadowpixel",
+  "displayName": "CND - Data Layer Monitor",
   "categories": ["ANALYTICS", "UTILITY"],
   "brand": {
     "id": "brand_dummy",
